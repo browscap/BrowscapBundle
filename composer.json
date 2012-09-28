@@ -27,7 +27,7 @@
         }
     },
     "autoload": {
-        "psr-0": { "joshuaestes\\BrowscapBundle": "" }
+        "psr-0": { "JoshuaEstes\\BrowscapBundle": "" }
     },
     "target-dir": "JoshuaEstes/BrowscapBundle"
 }
