@@ -10,7 +10,7 @@
 
     <services>
         <service id="browscap" class="%browscap.class%">
-            <argument>%kernel.cache_dir%/%kernel.environment%/browscap</argument>
+            <argument>%kernel.cache_dir%</argument>
         </service>
     </services>
 </container>
