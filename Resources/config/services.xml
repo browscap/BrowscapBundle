@@ -6,11 +6,25 @@
 
     <parameters>
         <parameter key="browscap.class">JoshuaEstes\BrowscapBundle\Browscap</parameter>
+        <parameter key="browscap.remote_ini_url">http://browsers.garykeith.com/stream.asp?BrowsCapINI</parameter>
+        <parameter key="browscap.remote_ver_url">http://browsers.garykeith.com/versions/version-date.asp</parameter>
+        <parameter key="browscap.timeout">5</parameter>
+        <parameter key="browscap.update_interval">432000</parameter>
+        <parameter key="browscap.error_interval">7200</parameter>
+        <parameter key="browscap.do_auto_update">true</parameter>
+        <parameter key="browscap.update_method" />
     </parameters>
 
     <services>
         <service id="browscap" class="%browscap.class%">
             <argument>%kernel.cache_dir%</argument>
+            <property name="remoteIniUrl">%browscap.remote_ini_url%</property>
+            <property name="remoteVerUrl">%browscap.remote_ver_url%</property>
+            <property name="timeout">%browscap.timeout%</property>
+            <property name="updateInterval">%browscap.update_interval%</property>
+            <property name="errorInterval">%browscap.error_interval%</property>
+            <property name="doAutoUpdate">%browscap.do_auto_update%</property>
+            <property name="updateMethod">%browscap.update_method%</property>
         </service>
     </services>
 </container>
