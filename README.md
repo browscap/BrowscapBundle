@@ -24,6 +24,15 @@ In your app/AppKernel.php file
         ...
     }
 
+## Configuration
+
+You can see the configuration values and information by running `php app/console config:dump-reference BrowscapBundle`
+
+    browscap:
+        remote_ini_url:       http://tempdownloads.browserscap.com/stream.php?BrowsCapINI
+        remote_ver_url:       http://tempdownloads.browserscap.com/versions/version-date.php
+
+
 ## Usage
 
 In your controller, you will just need to get the browser information via the
