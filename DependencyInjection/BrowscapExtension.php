@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * @author Joshua Estes <Joshua.Estes@ScenicCityLabs.com>
  */
-class JoshuaEstesBrowscapExtension extends Extension
+class BrowscapExtension extends Extension
 {
     /**
      * {@inheritDoc}
