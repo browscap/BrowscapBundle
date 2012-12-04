@@ -22,5 +22,9 @@ class BrowscapExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        foreach ($config as $k => $v) {
+            $container->setParameter('browscap.' . $k, $v);
+        }
     }
 }

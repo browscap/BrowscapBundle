@@ -6,8 +6,8 @@
 
     <parameters>
         <parameter key="browscap.class">JoshuaEstes\BrowscapBundle\Browscap</parameter>
-        <parameter key="browscap.remote_ini_url">http://browsers.garykeith.com/stream.asp?BrowsCapINI</parameter>
-        <parameter key="browscap.remote_ver_url">http://browsers.garykeith.com/versions/version-date.asp</parameter>
+        <parameter key="browscap.remote_ini_url">http://tempdownloads.browserscap.com/stream.php?BrowsCapINI</parameter>
+        <parameter key="browscap.remote_ver_url">http://tempdownloads.browserscap.com/versions/version-date.php</parameter>
         <parameter key="browscap.timeout">5</parameter>
         <parameter key="browscap.update_interval">432000</parameter>
         <parameter key="browscap.error_interval">7200</parameter>
