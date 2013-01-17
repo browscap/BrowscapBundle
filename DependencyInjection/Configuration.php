@@ -1,6 +1,6 @@
 <?php
 
-namespace JoshuaEstes\BrowscapBundle\DependencyInjection;
+namespace Browscap\BrowscapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

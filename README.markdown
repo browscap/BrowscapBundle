@@ -1,11 +1,11 @@
-# JoshuaEstes/BrowscapBundle
+# Browscap/BrowscapBundle
 
 This is a service for you that is similar to the php fucntion get_browser(). It
 uses https://github.com/GaretJax/phpbrowscap project.
 
 ## Installation
 
-    php composer.phar require joshuaestes/browscap-bundle:0.1.*
+    php composer.phar require browscap/browscap-bundle:1.0.*
 
 This will install the current version which is beta and is the master branch. I
 don't want to say it's stable yet until I have some more tests and real world
@@ -18,7 +18,7 @@ In your app/AppKernel.php file
         ...
         $bundles = array(
             ...
-            new JoshuaEstes\BrowscapBundle\BrowscapBundle(),
+            new Browscap\BrowscapBundle\BrowscapBundle(),
             ...
         );
         ...
@@ -38,18 +38,9 @@ You can see the configuration values and information by running `php app/console
 In your controller, you will just need to get the browser information via the
 dependency injection container.
 
-    // @var $browscap \JoshuaEstes\BrowscapBundle\Browscap
+    // @var $browscap \Browscap\BrowscapBundle\Browscap
     $browscap = $this->container->get('browscap');
     $browser = $browscap->getBrowser();
 
-I have include some help functions to check and see if it's an iPhone, iPad, or
-Android. You have access to the following functions.
-
-    // @var $browscap \JoshuaEstes\BrowscapBundle\Browscap
-    $browscap = $this->container->get('browscap');
-    $browscap->isIPad();
-    $browscap->isIPhone();
-    $browscap->isAndroid();
-    
 In the future there might be some more functions.
     

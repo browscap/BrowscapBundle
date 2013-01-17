@@ -1,6 +1,6 @@
 <?php
 
-namespace JoshuaEstes\BrowscapBundle\DependencyInjection;
+namespace Browscap\BrowscapBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

@@ -1,15 +1,15 @@
 {
-    "name": "joshuaestes/browscap-bundle",
+    "name": "browscap/browscap-bundle",
     "description": "Allows you to get browser information",
     "keywords": ["browscap", "browser"],
-    "homepage": "https://github.com/JoshuaEstes/BrowscapBundle",
+    "homepage": "https://github.com/browscap/BrowscapBundle",
     "type": "symfony-bundle",
     "require": {
         "php": ">=5.3.3",
-        "garetjax/phpbrowscap": "dev-master"
+        "browscap/browscap-php": "1.0.*@dev"
     },
     "license": "MIT",
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Joshua Estes",
@@ -19,15 +19,15 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/JoshuaEstes/BrowscapBundle/issues"
+        "issues": "https://github.com/browscap/BrowscapBundle/issues"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.2.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     },
     "autoload": {
-        "psr-0": { "JoshuaEstes\\BrowscapBundle": "" }
+        "psr-0": { "Browscap\\BrowscapBundle": "" }
     },
-    "target-dir": "JoshuaEstes/BrowscapBundle"
+    "target-dir": "Browscap/BrowscapBundle"
 }

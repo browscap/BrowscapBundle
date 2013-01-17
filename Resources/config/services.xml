@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="browscap.class">JoshuaEstes\BrowscapBundle\Browscap</parameter>
+        <parameter key="browscap.class">Browscap\BrowscapBundle\Browscap</parameter>
         <parameter key="browscap.remote_ini_url">http://tempdownloads.browserscap.com/stream.php?BrowsCapINI</parameter>
         <parameter key="browscap.remote_ver_url">http://tempdownloads.browserscap.com/versions/version-date.php</parameter>
         <parameter key="browscap.timeout">5</parameter>

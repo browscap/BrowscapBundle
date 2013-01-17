@@ -1,6 +1,6 @@
 <?php
 
-namespace JoshuaEstes\BrowscapBundle;
+namespace Browscap\BrowscapBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
