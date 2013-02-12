@@ -12,7 +12,7 @@
         <parameter key="browscap.update_interval">432000</parameter>
         <parameter key="browscap.error_interval">7200</parameter>
         <parameter key="browscap.do_auto_update">true</parameter>
-        <parameter key="browscap.update_method" />
+        <parameter key="browscap.update_method">cURL</parameter>
     </parameters>
 
     <services>
