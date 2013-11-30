@@ -31,7 +31,12 @@ You can see the configuration values and information by running `php app/console
     browscap:
         remote_ini_url:       http://tempdownloads.browserscap.com/stream.php?BrowsCapINI
         remote_ver_url:       http://tempdownloads.browserscap.com/versions/version-date.php
-
+        cache_dir:            null # If null, use your application cache directory
+        timeout:              5
+		update_interval:      432000
+		error_interval:       7200
+		do_auto_update:       true
+		update_method:        'cURL' # Supported methods: 'URL-wrapper','socket','cURL' and 'local'.
 
 ## Usage
 
