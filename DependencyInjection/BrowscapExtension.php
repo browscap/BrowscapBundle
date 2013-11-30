@@ -7,8 +7,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-use Symfony\Component\Form\Exception\InvalidConfigurationException;
-
 /**
  * @author Joshua Estes <Joshua.Estes@ScenicCityLabs.com>
  */
