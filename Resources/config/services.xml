@@ -18,6 +18,10 @@
             <property name="errorInterval">%browscap.error_interval%</property>
             <property name="doAutoUpdate">%browscap.do_auto_update%</property>
             <property name="updateMethod">%browscap.update_method%</property>
+            <property name="localFile">%browscap.local_file%</property>
+            <property name="lowercase">%browscap.lowercase%</property>
+            <property name="cacheFilename">%browscap.cache_filename%</property>
+            <property name="iniFilename">%browscap.ini_filename%</property>
         </service>
     </services>
 </container>
