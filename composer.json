@@ -8,6 +8,9 @@
         "php": ">=5.3.3",
         "browscap/browscap-php": "*@dev"
     },
+    "require-dev": {
+        "symfony/symfony": "~2.1"
+    },
     "license": "MIT",
     "minimum-stability": "dev",
     "authors": [
