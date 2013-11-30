@@ -29,20 +29,8 @@ class BrowscapExtension extends Extension
             $config['cache_dir'] = $container->getParameter('kernel.cache_dir');
         }
 
-        if( !is_dir($config['cache_dir']) ) {
-
-            $this->createCacheDirectory($config['cache_dir']);
-        }
-
         foreach ($config as $k => $v) {
             $container->setParameter('browscap.' . $k, $v);
-        }
-    }
-
-    private function createCacheDirectory($cache_dir) {
-
-        if( !mkdir( $cache_dir, 0777, true) ) {
-            throw new InvalidConfigurationException('Folder "'.$cache_dir.'" does not exist and can not be created.');
         }
     }
 }
