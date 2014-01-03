@@ -41,6 +41,7 @@ You can see the configuration values and information by running `php app/console
         cache_filename:       'cache.php'
         ini_filename:         'browscap.ini'
         lowercase:            false # You need to rebuild the cache if this option is changed
+        silent:               false
 
 ## Usage
 
