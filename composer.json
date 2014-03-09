@@ -6,7 +6,7 @@
     "type": "symfony-bundle",
     "require": {
         "php": ">=5.3.3",
-        "browscap/browscap-php": "1.0.*@dev"
+        "browscap/browscap-php": "*@dev"
     },
     "license": "MIT",
     "minimum-stability": "dev",
