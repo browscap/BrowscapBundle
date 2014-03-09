@@ -6,18 +6,11 @@
 
     <parameters>
         <parameter key="browscap.class">Browscap\BrowscapBundle\Browscap</parameter>
-        <parameter key="browscap.remote_ini_url">http://tempdownloads.browserscap.com/stream.php?BrowsCapINI</parameter>
-        <parameter key="browscap.remote_ver_url">http://tempdownloads.browserscap.com/versions/version-date.php</parameter>
-        <parameter key="browscap.timeout">5</parameter>
-        <parameter key="browscap.update_interval">432000</parameter>
-        <parameter key="browscap.error_interval">7200</parameter>
-        <parameter key="browscap.do_auto_update">true</parameter>
-        <parameter key="browscap.update_method">cURL</parameter>
     </parameters>
 
     <services>
         <service id="browscap" class="%browscap.class%">
-            <argument>%kernel.cache_dir%</argument>
+            <argument>%browscap.cache_dir%</argument>
             <property name="remoteIniUrl">%browscap.remote_ini_url%</property>
             <property name="remoteVerUrl">%browscap.remote_ver_url%</property>
             <property name="timeout">%browscap.timeout%</property>
@@ -25,6 +18,12 @@
             <property name="errorInterval">%browscap.error_interval%</property>
             <property name="doAutoUpdate">%browscap.do_auto_update%</property>
             <property name="updateMethod">%browscap.update_method%</property>
+            <property name="localFile">%browscap.local_file%</property>
+            <property name="lowercase">%browscap.lowercase%</property>
+            <property name="silent">%browscap.silent%</property>
+            <property name="cacheFilename">%browscap.cache_filename%</property>
+            <property name="iniFilename">%browscap.ini_filename%</property>
         </service>
     </services>
 </container>
+ 
