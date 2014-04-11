@@ -9,7 +9,7 @@
         "browscap/browscap-php": "*@dev"
     },
     "require-dev": {
-        "symfony/symfony": "~2.1"
+        "symfony/symfony": ">=2.1,<=2.5"
     },
     "license": "MIT",
     "minimum-stability": "dev",
