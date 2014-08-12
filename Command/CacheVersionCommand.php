@@ -21,7 +21,7 @@ class CacheVersionCommand extends ContainerAwareCommand
         $bc = $this->getContainer()->get('browscap');
 
         //Needed to load cache and get cache version
-        $bc->getBrowser("");
+        $bc->getBrowser('');
 
         $output->writeln($bc->getSourceVersion());
     }
