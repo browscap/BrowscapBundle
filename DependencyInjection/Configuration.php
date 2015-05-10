@@ -40,7 +40,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('browscap.ini')
                 ->end()
                 ->scalarNode('remote_ini_url')
-                    ->defaultValue('http://browscap.org/stream?q=PHP_BrowsCapINI')
+                    ->defaultValue('http://browscap.org/stream?q=Full_PHP_BrowsCapINI')
                 ->end()
                 ->scalarNode('remote_ver_url')
                     ->defaultValue('http://browscap.org/version')

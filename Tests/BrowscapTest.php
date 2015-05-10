@@ -84,6 +84,7 @@ class BrowscapTest extends WebTestCase
                 array(
                     'Parent' => 'Firefox 24.0',
                     'Platform' => 'Ubuntu',
+                    'CssVersion' => 3,
                     'isMobileDevice' => false,
                 ),
             ),
@@ -92,6 +93,7 @@ class BrowscapTest extends WebTestCase
                 array(
                     'Parent' => 'IE 10.0',
                     'Platform' => 'Win7',
+                    'CssVersion' => 3,
                     'isMobileDevice' => false,
                 ),
             ),
@@ -100,6 +102,7 @@ class BrowscapTest extends WebTestCase
                 array(
                     'Parent' => 'Android Browser 4.0',
                     'Platform' => 'Android',
+                    'CssVersion' => 3,
                     'isMobileDevice' => true,
                 ),
             ),
