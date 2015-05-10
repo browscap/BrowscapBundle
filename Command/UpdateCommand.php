@@ -18,11 +18,11 @@ class UpdateCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if( $this->getContainer()->get('browscap')->updateCache() ) {
-
+        if ($this->getContainer()->get('browscap')->updateCache()) {
             $output->writeln('The cache has been updated successfully');
             return;
         }
+
         $output->writeln('An error occurred during cache update');
     }
 }

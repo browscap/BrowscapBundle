@@ -61,7 +61,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(7200)
                 ->end()
                 ->booleanNode('do_auto_update')
-                    ->defaultValue(true)
+                    ->defaultValue(false)
                 ->end()
                 ->scalarNode('update_method')
                     ->validate()

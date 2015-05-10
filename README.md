@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/browscap/BrowscapBundle.png?branch=master)](https://travis-ci.org/browscap/BrowscapBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/browscap/BrowscapBundle/badges/quality-score.png?s=0a058c81e93dd25ad58b538c8578d14c8fe31ca6)](https://scrutinizer-ci.com/g/browscap/BrowscapBundle/) [![Code Coverage](https://scrutinizer-ci.com/g/browscap/BrowscapBundle/badges/coverage.png?s=6ff7ad2d6ef5cd27781edc70bc3370d06134d074)](https://scrutinizer-ci.com/g/browscap/BrowscapBundle/)
 
 This is a service for you that is similar to the php fucntion get_browser(). It
-uses https://github.com/GaretJax/phpbrowscap project.
+uses https://github.com/browscap/browscap-php project.
 
 ## Installation
 
@@ -31,8 +31,8 @@ In your app/AppKernel.php file
 You can see the configuration values and information by running `php app/console config:dump-reference BrowscapBundle`
 
     browscap:
-        remote_ini_url:       http://tempdownloads.browserscap.com/stream.php?BrowsCapINI
-        remote_ver_url:       http://tempdownloads.browserscap.com/versions/version-date.php
+        remote_ini_url:       http://browscap.org/stream?q=PHP_BrowsCapINI
+        remote_ver_url:       http://browscap.org/version
         cache_dir:            null # If null, use your application cache directory
         timeout:              5
         update_interval:      432000
@@ -55,4 +55,4 @@ dependency injection container.
     $browser = $browscap->getBrowser();
 
 In the future there might be some more functions.
-    
+
