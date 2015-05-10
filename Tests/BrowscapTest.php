@@ -6,6 +6,11 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class BrowscapTest extends WebTestCase
 {
+    /**
+     * @var \phpbrowscap\Browscap
+     */
+    private static $browscap;
+
     protected static function createKernel(array $options = array())
     {
         $env = @$options['env'] ?: 'test';
@@ -13,54 +18,73 @@ class BrowscapTest extends WebTestCase
         return new AppKernel($env, true);
     }
 
-    protected function setUp()
+    /**
+     * This method is called before the first test of this test class is run.
+     *
+     * @since Method available since Release 3.4.0
+     */
+    public static function setUpBeforeClass()
     {
         $fs = new Filesystem();
         $fs->remove(sys_get_temp_dir().'/BrowscapBundle/');
-    }
-
-    protected function tearDown()
-    {
-        static::$kernel = null;
-    }
-
-    public function testService() {
 
         $client = static::createClient();
 
+        /* @var $bc \Browscap\BrowscapBundle\Browscap */
         $bc = $client->getContainer()->get('browscap');
-        
-        $this->assertInstanceOf('Browscap\BrowscapBundle\Browscap', $bc);
+        $bc->updateCache();
+
+        // Now, load an INI file into phpbrowscap\Browscap for testing the UAs
+        self::$browscap = $bc;
+    }
+
+    public function testService()
+    {
+        self::assertInstanceOf('Browscap\BrowscapBundle\Browscap', self::$browscap);
     }
 
     /**
      * @dataProvider getBrowsers
+     *
+     * @param string $userAgent
+     * @param array  $expectedProperties
      */
-    public function testBrowsers($browser, array $expected) {
+    public function testBrowsers($userAgent, array $expectedProperties)
+    {
+        if (!is_array($expectedProperties) || !count($expectedProperties)) {
+            $this->markTestSkipped('Could not run test - no properties were defined to test');
+        }
 
-        $client = static::createClient();
+        $actualProps = (array) self::$browscap->getBrowser($userAgent);
 
-        $bc = $client->getContainer()->get('browscap');
-        $result = $bc->getBrowser($browser, true);
+        foreach ($expectedProperties as $propName => $propValue) {
+            self::assertArrayHasKey(
+                $propName,
+                $actualProps,
+                'Actual properties did not have "' . $propName . '" property'
+            );
 
-        foreach ($expected as $key => $value) {
-
-            $this->assertEquals($value, $result[$key]);
+            self::assertSame(
+                $propValue,
+                $actualProps[$propName],
+                'Expected actual "' . $propName . '" to be "' . $propValue . '" (was "' . $actualProps[$propName]
+                . '"; used pattern: ' . $actualProps['browser_name_pattern'] .')'
+            );
         }
     }
 
     /**
      * Data Provider for testBrowsers
      */
-    public function getBrowsers() {
-
+    public function getBrowsers()
+    {
         return array(
             array(
                 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/24.0',
                 array(
                     'Parent' => 'Firefox 24.0',
-                    'Platform' => 'Linux',
-                    'CssVersion' => 3,
+                    'Platform' => 'Ubuntu',
+                    'isMobileDevice' => false,
                 ),
             ),
             array(
@@ -68,7 +92,7 @@ class BrowscapTest extends WebTestCase
                 array(
                     'Parent' => 'IE 10.0',
                     'Platform' => 'Win7',
-                    'CssVersion' => 3,
+                    'isMobileDevice' => false,
                 ),
             ),
             array(
@@ -76,7 +100,6 @@ class BrowscapTest extends WebTestCase
                 array(
                     'Parent' => 'Android Browser 4.0',
                     'Platform' => 'Android',
-                    'CssVersion' => 3,
                     'isMobileDevice' => true,
                 ),
             ),

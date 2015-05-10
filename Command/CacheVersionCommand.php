@@ -18,6 +18,7 @@ class CacheVersionCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /* @var $bc \Browscap\BrowscapBundle\Browscap */
         $bc = $this->getContainer()->get('browscap');
 
         //Needed to load cache and get cache version
