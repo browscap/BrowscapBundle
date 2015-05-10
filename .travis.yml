@@ -8,6 +8,10 @@ php:
   - 7
   - hhvm
 
+os:
+  - linux
+  - osx
+
 matrix:
   allow_failures:
     - php: 7
