@@ -2,7 +2,7 @@
 
 namespace Browscap\BrowscapBundle;
 
-use phpbrowscap\Browscap as BaseBrowscap;
+use BrowscapPHP\Browscap as BaseBrowscap;
 
 /**
  * @author Joshua Estes <Joshua.Estes@ScenicCityLabs.com>
