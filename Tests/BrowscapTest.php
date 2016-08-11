@@ -1,4 +1,5 @@
 <?php
+
 namespace Browscap\BrowscapBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -59,14 +60,14 @@ class BrowscapTest extends WebTestCase
                 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/24.0',
                 array(
                     'Parent' => 'Firefox 24.0',
-                    'Platform' => 'Linux',
+                    'Platform' => 'Ubuntu',
                     'CssVersion' => 3,
                 ),
             ),
             array(
                 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
                 array(
-                    'Parent' => 'IE 10.0',
+                    'Parent' => 'IE 10.0 for Desktop',
                     'Platform' => 'Win7',
                     'CssVersion' => 3,
                 ),
