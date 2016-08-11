@@ -5,14 +5,14 @@
     "homepage": "https://github.com/browscap/BrowscapBundle",
     "type": "symfony-bundle",
     "require": {
-        "php": ">=5.3.3",
-        "browscap/browscap-php": "*@dev"
+        "php": "^5.3.3 || ^7.0",
+        "symfony/framework-bundle": "^2.3 || ^3.0",
+        "browscap/browscap-php": "^2.0"
     },
     "require-dev": {
-        "symfony/symfony": ">=2.1,<=2.5"
+        "symfony/symfony": "^2.3 || ^3.0"
     },
     "license": "MIT",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Joshua Estes",
@@ -26,7 +26,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "1.1.x-dev"
         }
     },
     "autoload": {
