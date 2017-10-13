@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="browscap.class">Browscap\BrowscapBundle\Browscap</parameter>
+        <parameter key="browscap.twig_extension.class">Browscap\BrowscapBundle\Twig\Extension\BrowscapExtension</parameter>
     </parameters>
 
     <services>
@@ -24,6 +25,10 @@
             <property name="cacheFilename">%browscap.cache_filename%</property>
             <property name="iniFilename">%browscap.ini_filename%</property>
         </service>
+
+        <service id="browscap.twig_extension" class="%browscap.twig_extension.class%">
+            <argument type="service" id="browscap" />
+            <tag name="twig.extension" />
+        </service>
     </services>
 </container>
- 

@@ -54,5 +54,9 @@ dependency injection container.
     $browscap = $this->container->get('browscap');
     $browser = $browscap->getBrowser();
 
+In twig templates, you can call the `get_browser` function :
+
+    {% set browser = get_browser() %}
+
 In the future there might be some more functions.
 
