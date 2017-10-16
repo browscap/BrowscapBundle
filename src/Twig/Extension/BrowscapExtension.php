@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace Browscap\BrowscapBundle\Twig\Extension;
 
 use phpbrowscap\Browscap;
@@ -14,7 +15,7 @@ class BrowscapExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return array(new \Twig_SimpleFunction('get_browser', array($this->browscap, 'getBrowser')));
+        return [new \Twig_SimpleFunction('get_browser', [$this->browscap, 'getBrowser'])];
     }
 
     public function getName()

@@ -1,36 +1,43 @@
 {
-    "name": "browscap/browscap-bundle",
-    "description": "Allows you to get browser information",
-    "keywords": ["browscap", "browser"],
-    "homepage": "https://github.com/browscap/BrowscapBundle",
-    "type": "symfony-bundle",
-    "require": {
-        "php": ">=5.3.3",
-        "browscap/browscap-php": "2.*"
-    },
-    "require-dev": {
-        "symfony/symfony": ">=2.1,<=2.5"
-    },
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "authors": [
-        {
-            "name": "Joshua Estes",
-            "email": "Joshua.Estes@ScenicCityLabs.com",
-            "homepage": "http://joshuaestes.me",
-            "role": "developer"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/browscap/BrowscapBundle/issues"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    },
-    "autoload": {
-        "psr-0": { "Browscap\\BrowscapBundle": "" }
-    },
-    "target-dir": "Browscap/BrowscapBundle"
+  "name": "browscap/browscap-bundle",
+  "description": "Allows you to get browser information",
+  "keywords": [
+    "browscap",
+    "browser"
+  ],
+  "homepage": "https://github.com/browscap/BrowscapBundle",
+  "type": "symfony-bundle",
+  "require": {
+    "php": ">=5.3.3",
+    "browscap/browscap-php": "~2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "squizlabs/php_codesniffer": "^3.0",
+    "friendsofphp/php-cs-fixer": "^2.7",
+    "phpstan/phpstan": "^0.8.5",
+    "symfony/symfony": "^3.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Joshua Estes",
+      "email": "Joshua.Estes@ScenicCityLabs.com",
+      "homepage": "http://joshuaestes.me",
+      "role": "developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/browscap/BrowscapBundle/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "Browscap\\BrowscapBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Browscap\\BrowscapBundle\\Tests\\": "tests/"
+    }
+  }
 }

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 namespace Browscap\BrowscapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -11,19 +11,19 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('browscap');
 
-        $supportedMethods = array(
+        $supportedMethods = [
             'URL-wrapper',
             'socket',
             'cURL',
             'local',
-        );
+        ];
 
         $rootNode
             ->children()
@@ -61,7 +61,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(7200)
                 ->end()
                 ->booleanNode('do_auto_update')
-                    ->defaultValue(true)
+                    ->defaultValue(false)
                 ->end()
                 ->scalarNode('update_method')
                     ->validate()
