@@ -24,7 +24,6 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
-  - alias composer
   - .travis-scripts/cache-browscap.sh
   - phpenv config-rm xdebug.ini || echo "xdebug was not installed"
   - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
