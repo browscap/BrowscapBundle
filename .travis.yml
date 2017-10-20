@@ -2,7 +2,6 @@ language: php
 sudo: false
 
 php:
-  - 5.3
   - 5.4
   - 5.5
   - 5.6
@@ -32,9 +31,9 @@ before_install:
   - travis_retry composer self-update
 
 install:
-  - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
-  - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-  - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpunit/phpunit:^6.2
+  - travis_retry php -d memory_limit=-1 composer require symfony/symfony:${SYMFONY_VERSION} --no-update
+  - travis_retry php -d memory_limit=-1 composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
+  - travis_retry php -d memory_limit=-1 composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpunit/phpunit:^6.2
 
 script:
   - composer validate
@@ -46,6 +45,10 @@ jobs:
     - php: 7.2
     - php: nightly
   include:
+    - php: 5.3
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION="^2.0 || ^3.0"
+      dist: precise
     - php: 7.2
       env: COMPOSER_FLAGS="--ignore-platform-reqs"
     - php: nightly
@@ -81,16 +84,16 @@ jobs:
         - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - travis_retry composer self-update
-      script: php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
+      script: php -d memory_limit=-1 -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
       after_success:
         - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
     - stage: check coding style
       php: 7.1
       env: COMPOSER_FLAGS=""
       install:
-        - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS squizlabs/php_codesniffer:^3.0
-        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS friendsofphp/php-cs-fixer:^2.5
+        - travis_retry php -d memory_limit=-1 composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
+        - travis_retry php -d memory_limit=-1 composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS squizlabs/php_codesniffer:^3.0
+        - travis_retry php -d memory_limit=-1 composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS friendsofphp/php-cs-fixer:^2.5
       script:
         - vendor/bin/phpcs
         - php -n -d memory_limit=768M vendor/bin/php-cs-fixer fix --dry-run -vv
@@ -98,6 +101,6 @@ jobs:
       php: 7.1
       env: COMPOSER_FLAGS=""
       install:
-        - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpstan/phpstan:0.8.5
+        - travis_retry php -d memory_limit=-1 composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
+        - travis_retry php -d memory_limit=-1 composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpstan/phpstan:0.8.5
       script: vendor/bin/phpstan analyse -l 7 -c phpstan.neon --autoload-file=vendor/autoload.php --memory-limit=768M --no-progress src tests
