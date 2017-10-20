@@ -2,18 +2,22 @@ language: php
 sudo: false
 
 php:
+  - 5.3
   - 5.4
   - 5.5
   - 5.6
   - 7.0
   - 7.1
   - 7.2
+  - nightly
 
 os: linux
 
 env:
   - COMPOSER_FLAGS="--prefer-lowest"
+    SYMFONY_VERSION="^2.0 || ^3.0"
   - COMPOSER_FLAGS=""
+    SYMFONY_VERSION="^2.0 || ^3.0"
 
 cache:
   directories:
@@ -27,7 +31,10 @@ before_install:
   - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - travis_retry composer self-update
 
-install: travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction -vv $COMPOSER_FLAGS
+install:
+  - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
+  - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
+  - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpunit/phpunit:^6.2
 
 script:
   - composer validate
@@ -43,6 +50,27 @@ jobs:
       env: COMPOSER_FLAGS="--ignore-platform-reqs"
     - php: nightly
       env: COMPOSER_FLAGS="--ignore-platform-reqs"
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^2.3.0
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^2.7.0
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^2.8
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^3.0.0
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^3.1.0
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^3.2.0
+    - php: 7.1
+      env: COMPOSER_FLAGS=""
+           SYMFONY_VERSION=^3.3.0
     - stage: test with coverage
       php: 7.1
       env:
@@ -59,10 +87,17 @@ jobs:
     - stage: check coding style
       php: 7.1
       env: COMPOSER_FLAGS=""
+      install:
+        - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
+        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS squizlabs/php_codesniffer:^3.0
+        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS friendsofphp/php-cs-fixer:^2.5
       script:
         - vendor/bin/phpcs
         - php -n -d memory_limit=768M vendor/bin/php-cs-fixer fix --dry-run -vv
     - stage: static code analysis
       php: 7.1
       env: COMPOSER_FLAGS=""
+      install:
+        - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
+        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpstan/phpstan:0.8.5
       script: vendor/bin/phpstan analyse -l 7 -c phpstan.neon --autoload-file=vendor/autoload.php --memory-limit=768M --no-progress src tests
