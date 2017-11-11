@@ -12,12 +12,12 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = [
+        $bundles = array(
             new FrameworkBundle(),
             new SecurityBundle(),
 
             new BrowscapBundle(),
-        ];
+        );
 
         return $bundles;
     }
@@ -27,7 +27,7 @@ class AppKernel extends Kernel
         return sys_get_temp_dir() . '/BrowscapBundle/';
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader) : void
+    public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__ . '/config/config.yml');
     }

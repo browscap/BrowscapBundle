@@ -8,14 +8,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CacheVersionCommand extends ContainerAwareCommand
 {
-    protected function configure() : void
+    protected function configure()
     {
         $this
             ->setName('browscap:cache_version')
             ->setDescription('Indicates the version of the cache used by Browscap');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : void
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         /* @var $bc \Browscap\BrowscapBundle\Browscap */
         $bc = $this->getContainer()->get('browscap');

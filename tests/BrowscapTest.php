@@ -14,7 +14,7 @@ class BrowscapTest extends WebTestCase
      */
     private static $browscap;
 
-    protected static function createKernel(array $options = [])
+    protected static function createKernel(array $options = array())
     {
         $env = @$options['env'] ?: 'test';
 
@@ -26,7 +26,7 @@ class BrowscapTest extends WebTestCase
      *
      * @since Method available since Release 3.4.0
      */
-    public static function setUpBeforeClass() : void
+    public static function setUpBeforeClass()
     {
         $cacheDir = sys_get_temp_dir() . '/BrowscapBundle/';
         $fs = new Filesystem();
@@ -46,7 +46,7 @@ class BrowscapTest extends WebTestCase
         self::$browscap = $bc;
     }
 
-    public function testService() : void
+    public function testService()
     {
         self::assertInstanceOf('Browscap\BrowscapBundle\Browscap', self::$browscap);
     }
@@ -57,7 +57,7 @@ class BrowscapTest extends WebTestCase
      * @param string $userAgent
      * @param array  $expectedProperties
      */
-    public function testBrowsers($userAgent, array $expectedProperties) : void
+    public function testBrowsers($userAgent, array $expectedProperties)
     {
         if (!is_array($expectedProperties) || !count($expectedProperties)) {
             self::markTestSkipped('Could not run test - no properties were defined to test');
@@ -86,31 +86,31 @@ class BrowscapTest extends WebTestCase
      */
     public function getBrowsers()
     {
-        return [
-            [
+        return array(
+            array(
                 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/24.0',
-                [
+                array(
                     'Parent' => 'Firefox 24.0',
                     'Platform' => 'Ubuntu',
                     'isMobileDevice' => false,
-                ],
-            ],
-            [
+                ),
+            ),
+            array(
                 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
-                [
+                array(
                     'Parent' => 'IE 10.0 for Desktop',
                     'Platform' => 'Win7',
                     'isMobileDevice' => false,
-                ],
-            ],
-            [
+                ),
+            ),
+            array(
                 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
-                [
+                array(
                     'Parent' => 'Android Browser 4.0',
                     'Platform' => 'Android',
                     'isMobileDevice' => true,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 }

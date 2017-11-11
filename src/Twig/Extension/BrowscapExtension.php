@@ -15,7 +15,7 @@ class BrowscapExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return [new \Twig_SimpleFunction('get_browser', [$this->browscap, 'getBrowser'])];
+        return array(new \Twig_SimpleFunction('get_browser', array($this->browscap, 'getBrowser')));
     }
 
     public function getName()

@@ -18,12 +18,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('browscap');
 
-        $supportedMethods = [
+        $supportedMethods = array(
             'URL-wrapper',
             'socket',
             'cURL',
             'local',
-        ];
+        );
 
         $rootNode
             ->children()
