@@ -31,11 +31,11 @@ before_install:
   - wget https://github.com/composer/composer/releases/download/1.5.2/composer.phar
 
 install:
-  - composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
+  - php composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
   - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
 
 script:
-  - composer.phar validate
+  - php composer.phar validate
   - wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini php phpunit-6.4.3.phar --no-coverage --colors --verbose
 
 jobs:
@@ -94,7 +94,7 @@ jobs:
       php: 7.1
       env: COMPOSER_FLAGS=""
       install:
-        - composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
-        - composer.phar require phpstan/phpstan --no-update
+        - php composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
+        - php composer.phar require phpstan/phpstan --no-update
         - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
       script: vendor/bin/phpstan analyse -l 7 -c phpstan.neon --autoload-file=vendor/autoload.php --memory-limit=768M --no-progress src tests
