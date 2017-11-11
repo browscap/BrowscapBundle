@@ -13,15 +13,13 @@ php:
 os: linux
 
 env:
-  - COMPOSER_FLAGS="--prefer-lowest"
-    SYMFONY_VERSION="^2.0||^3.0"
-  - COMPOSER_FLAGS=""
-    SYMFONY_VERSION="^2.0||^3.0"
+  - SYMFONY_VERSION="^2.0||^3.0"
+    COMPOSER_FLAGS="--prefer-lowest"
+  - SYMFONY_VERSION="^2.0||^3.0"
 
 cache:
   directories:
     - $TRAVIS_BUILD_DIR/resources
-    - $HOME/.composer/cache
 
 before_install:
   - .travis-scripts/cache-browscap.sh
@@ -32,6 +30,7 @@ before_install:
 
 install:
   - php composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
+  - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
   - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
 
 script:
@@ -104,6 +103,7 @@ jobs:
       env: COMPOSER_FLAGS=""
       install:
         - php composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
+        - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
         - php composer.phar require phpstan/phpstan --no-update
         - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
       script: vendor/bin/phpstan analyse -l 7 -c phpstan.neon --autoload-file=vendor/autoload.php --memory-limit=768M --no-progress src tests
