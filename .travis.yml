@@ -28,79 +28,73 @@ before_install:
   - phpenv config-rm xdebug.ini || echo "xdebug was not installed"
   - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - travis_retry composer self-update
+  - wget https://github.com/composer/composer/releases/download/1.5.2/composer.phar
 
 install:
-  - travis_retry composer require symfony/symfony:${SYMFONY_VERSION} --no-update
-  - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-  - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpunit/phpunit:^6.2
+  - composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
+  - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
 
 script:
-  - composer validate
-  - php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --no-coverage --colors --verbose
+  - composer.phar validate
+  - wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini php phpunit-6.4.3.phar --no-coverage --colors --verbose
 
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 7.2
     - php: nightly
   include:
     - php: 5.3
       env: COMPOSER_FLAGS=""
            SYMFONY_VERSION="^2.0 || ^3.0"
       dist: precise
-    - php: 7.2
-      env: COMPOSER_FLAGS="--ignore-platform-reqs"
     - php: nightly
       env: COMPOSER_FLAGS="--ignore-platform-reqs"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^2.3.0
+           SYMFONY_VERSION="^2.3.0"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^2.7.0
+           SYMFONY_VERSION="^2.7.0"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^2.8
+           SYMFONY_VERSION="^2.8.0"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^3.0.0
+           SYMFONY_VERSION="^3.0.0"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^3.1.0
+           SYMFONY_VERSION="^3.1.0"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^3.2.0
+           SYMFONY_VERSION="^3.2.0"
     - php: 7.1
       env: COMPOSER_FLAGS=""
-           SYMFONY_VERSION=^3.3.0
+           SYMFONY_VERSION="^3.3.0"
     - stage: test with coverage
       php: 7.1
       env:
         - COVERAGE=yes
         - COMPOSER_FLAGS=""
+        - SYMFONY_VERSION="^2.0 || ^3.0"
       before_install:
         - .travis-scripts/cache-browscap.sh
         - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-        - travis_retry composer self-update
-      script: php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
+        - wget https://github.com/composer/composer/releases/download/1.5.2/composer.phar
+      script: wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini php phpunit-6.4.3.phar --coverage-text --coverage-clover=coverage.clover --colors --verbose
       after_success:
         - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
     - stage: check coding style
       php: 7.1
       env: COMPOSER_FLAGS=""
-      install:
-        - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS squizlabs/php_codesniffer:^3.0
-        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS friendsofphp/php-cs-fixer:^2.5
       script:
-        - vendor/bin/phpcs
-        - php -n -d memory_limit=768M vendor/bin/php-cs-fixer fix --dry-run -vv
+        - wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.1.1/phpcs.phar && php phpcs.phar --colors
+        - wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.7.1/php-cs-fixer.phar && php -n -d memory_limit=768M php-cs-fixer.phar fix --dry-run -vv
     - stage: static code analysis
       php: 7.1
       env: COMPOSER_FLAGS=""
       install:
-        - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-        - travis_retry composer require --update-with-dependencies --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest $COMPOSER_FLAGS phpstan/phpstan:0.8.5
+        - composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
+        - composer.phar require phpstan/phpstan --no-update
+        - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
       script: vendor/bin/phpstan analyse -l 7 -c phpstan.neon --autoload-file=vendor/autoload.php --memory-limit=768M --no-progress src tests
