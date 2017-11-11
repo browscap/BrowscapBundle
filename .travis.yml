@@ -35,7 +35,7 @@ install:
 
 script:
   - php composer.phar validate
-  - wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini php phpunit-6.4.3.phar --no-coverage --colors --verbose
+  - wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini phpunit-6.4.3.phar --no-coverage --colors --verbose
 
 jobs:
   fast_finish: true
@@ -89,7 +89,7 @@ jobs:
         - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - wget https://github.com/composer/composer/releases/download/1.5.2/composer.phar
-      script: wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini php phpunit-6.4.3.phar --coverage-text --coverage-clover=coverage.clover --colors --verbose
+      script: wget https://phar.phpunit.de/phpunit-6.4.3.phar && php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini phpunit-6.4.3.phar --coverage-text --coverage-clover=coverage.clover --colors --verbose
       after_success:
         - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
     - stage: check coding style
