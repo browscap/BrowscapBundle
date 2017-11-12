@@ -14,7 +14,7 @@
     "browscap/browscap-php": "^2.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^4.8.36 || ^5.7.23 || ^6.0.0"
+    "phpunit/phpunit": "^4.8.36 || ^5.7.23"
   },
   "license": "MIT",
   "authors": [
