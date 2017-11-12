@@ -22,7 +22,6 @@ cache:
     - $TRAVIS_BUILD_DIR/resources
 
 before_install:
-  - .travis-scripts/cache-browscap.sh
   - phpenv config-rm xdebug.ini || echo "xdebug was not installed"
   - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
@@ -35,6 +34,7 @@ install:
 
 script:
   - php composer.phar validate
+  - .travis-scripts/cache-browscap.sh
   - vendor/bin/phpunit --no-coverage --colors --verbose
 
 jobs:
@@ -50,7 +50,8 @@ jobs:
       env: SYMFONY_VERSION="^2.0||^3.0"
       dist: precise
     - php: nightly
-      env: COMPOSER_FLAGS="--ignore-platform-reqs"
+      env: SYMFONY_VERSION="^2.0||^3.0"
+           COMPOSER_FLAGS="--ignore-platform-reqs"
     - php: 7.1
       env: SYMFONY_VERSION="~2.3.0"
     - php: 7.1
@@ -75,25 +76,11 @@ jobs:
       php: 7.1
       env: SYMFONY_VERSION="^2.0||^3.0"
       before_install:
-        - .travis-scripts/cache-browscap.sh
         - echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
         - wget https://github.com/composer/composer/releases/download/1.5.2/composer.phar
-      script: php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
+      script:
+        - .travis-scripts/cache-browscap.sh
+        - php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
       after_success:
         - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-    - stage: check coding style
-      php: 7.1
-      env: COMPOSER_FLAGS=""
-      script:
-        - wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.1.1/phpcs.phar && php phpcs.phar --colors
-        - wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.7.1/php-cs-fixer.phar && php -n -d memory_limit=768M php-cs-fixer.phar fix --dry-run -vv
-    - stage: static code analysis
-      php: 7.1
-      env: COMPOSER_FLAGS=""
-      install:
-        - php composer.phar require symfony/symfony:${SYMFONY_VERSION} --no-update
-        - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
-        - php composer.phar require phpstan/phpstan --no-update
-        - php -d memory_limit=-1 composer.phar update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction --no-suggest --no-dev $COMPOSER_FLAGS -vv
-      script: vendor/bin/phpstan analyse -l 7 -c phpstan.neon --autoload-file=vendor/autoload.php --memory-limit=768M --no-progress src tests
