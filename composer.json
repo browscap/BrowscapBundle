@@ -23,6 +23,15 @@
       "email": "Joshua.Estes@ScenicCityLabs.com",
       "homepage": "http://joshuaestes.me",
       "role": "developer"
+    },
+    {
+      "name": "Thomas Müller",
+      "homepage": "https://github.com/mimmi20",
+      "role": "Developer"
+    },
+    {
+      "name": "Contributors",
+      "homepage": "https://github.com/browscap/BrowscapBundle/graphs/contributors"
     }
   ],
   "support": {
