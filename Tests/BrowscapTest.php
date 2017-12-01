@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+
 namespace Browscap\BrowscapBundle\Tests;
 
 use phpbrowscap\Browscap;
