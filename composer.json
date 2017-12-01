@@ -1,45 +1,45 @@
 {
-  "name": "browscap/browscap-bundle",
-  "description": "Allows you to get browser information",
-  "keywords": [
-    "browscap",
-    "browser"
-  ],
-  "homepage": "https://github.com/browscap/BrowscapBundle",
-  "type": "symfony-bundle",
-  "require": {
-    "php": "^5.3.3 || ^7.0",
-    "symfony/symfony": "^2.3 || ^3.0",
-    "symfony/framework-bundle": "^2.3 || ^3.0",
-    "browscap/browscap-php": "^2.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^4.8.36 || ^5.7.23"
-  },
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Joshua Estes",
-      "email": "Joshua.Estes@ScenicCityLabs.com",
-      "homepage": "http://joshuaestes.me",
-      "role": "developer"
+    "name": "browscap/browscap-bundle",
+    "description": "Allows you to get browser information",
+    "keywords": [
+        "browscap",
+        "browser"
+    ],
+    "homepage": "https://github.com/browscap/BrowscapBundle",
+    "type": "symfony-bundle",
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+        "symfony/symfony": "^2.3 || ^3.0",
+        "symfony/framework-bundle": "^2.3 || ^3.0",
+        "browscap/browscap-php": "^2.0"
     },
-    {
-      "name": "Thomas Müller",
-      "homepage": "https://github.com/mimmi20",
-      "role": "Developer"
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.36 || ^5.7.23"
     },
-    {
-      "name": "Contributors",
-      "homepage": "https://github.com/browscap/BrowscapBundle/graphs/contributors"
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "email": "Joshua.Estes@ScenicCityLabs.com",
+            "homepage": "http://joshuaestes.me",
+            "role": "developer"
+        },
+        {
+            "name": "Thomas Müller",
+            "homepage": "https://github.com/mimmi20",
+            "role": "Developer"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/browscap/BrowscapBundle/graphs/contributors"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/browscap/BrowscapBundle/issues"
+    },
+    "autoload": {
+        "psr-0": {
+            "Browscap\\BrowscapBundle\\": ""
+        }
     }
-  ],
-  "support": {
-    "issues": "https://github.com/browscap/BrowscapBundle/issues"
-  },
-  "autoload": {
-    "psr-4": {
-      "Browscap\\BrowscapBundle\\": ""
-    }
-  }
 }
