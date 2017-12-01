@@ -6,8 +6,8 @@
     "type": "symfony-bundle",
     "require": {
         "php": "^5.3.3 || ^7.0",
-        "symfony/symfony": "^2.3 || ^3.0",
-        "symfony/framework-bundle": "^2.3 || ^3.0",
+        "symfony/symfony": "^2.3 || ^3.0 || ^4.0",
+        "symfony/framework-bundle": "^2.3 || ^3.0 || ^4.0",
         "browscap/browscap-php": "^2.0"
     },
     "require-dev": {
@@ -36,5 +36,6 @@
     },
     "autoload": {
         "psr-0": { "Browscap\\BrowscapBundle\\": "" }
-    }
+    },
+    "target-dir": "Browscap/BrowscapBundle"
 }
