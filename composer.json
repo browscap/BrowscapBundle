@@ -39,12 +39,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Browscap\\BrowscapBundle\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Browscap\\BrowscapBundle\\Tests\\": "tests/"
+      "Browscap\\BrowscapBundle\\": ""
     }
   }
 }

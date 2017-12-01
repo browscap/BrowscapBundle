@@ -21,14 +21,14 @@
 
     <testsuites>
         <testsuite name="BrowscapBundle test suite">
-            <directory suffix="Test.php">./tests</directory>
+            <directory suffix="Test.php">./Tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>src/</directory>
+            <directory>./</directory>
             <exclude>
-                <directory>src/Resources/</directory>
+                <directory>./resources/</directory>
             </exclude>
         </whitelist>
     </filter>
