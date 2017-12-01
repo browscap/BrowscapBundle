@@ -19,7 +19,7 @@ env:
 
 cache:
   directories:
-    - $TRAVIS_BUILD_DIR/resources
+    - $TRAVIS_BUILD_DIR/Resources
 
 before_install:
   - phpenv config-rm xdebug.ini || echo "xdebug was not installed"
@@ -81,6 +81,6 @@ jobs:
         - wget https://github.com/composer/composer/releases/download/1.5.2/composer.phar
       script:
         - .travis-scripts/cache-browscap.sh
-        - php -d browscap=$TRAVIS_BUILD_DIR/resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
+        - php -d browscap=$TRAVIS_BUILD_DIR/Resources/browscap.ini vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --colors --verbose
       after_success:
         - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover

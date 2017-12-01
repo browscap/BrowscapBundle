@@ -1,5 +1,4 @@
 <?php
-
 namespace Browscap\BrowscapBundle\Tests;
 
 use phpbrowscap\Browscap;
@@ -38,7 +37,7 @@ class BrowscapTest extends WebTestCase
         /* @var $bc \Browscap\BrowscapBundle\Browscap */
         $bc = $container->get('browscap');
         $bc->updateMethod = Browscap::UPDATE_LOCAL;
-        $bc->localFile = 'resources/browscap.ini';
+        $bc->localFile = 'Resources/browscap.ini';
         $bc->cacheDir = $cacheDir;
         $bc->updateCache();
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace Browscap\BrowscapBundle\Tests;
 
 use Browscap\BrowscapBundle\BrowscapBundle;

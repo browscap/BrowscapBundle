@@ -1,5 +1,4 @@
 <?php
-
 namespace Browscap\BrowscapBundle\Twig\Extension;
 
 use phpbrowscap\Browscap;

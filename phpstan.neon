@@ -1,6 +1,0 @@
-parameters:
-  autoload_files:
-    - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
-    - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
-  ignoreErrors:
-    - '~class Twig_Function constructor expects callable~'

@@ -1,10 +1,7 @@
 {
     "name": "browscap/browscap-bundle",
     "description": "Allows you to get browser information",
-    "keywords": [
-        "browscap",
-        "browser"
-    ],
+    "keywords": ["browscap", "browser"],
     "homepage": "https://github.com/browscap/BrowscapBundle",
     "type": "symfony-bundle",
     "require": {
@@ -38,8 +35,6 @@
         "issues": "https://github.com/browscap/BrowscapBundle/issues"
     },
     "autoload": {
-        "psr-0": {
-            "Browscap\\BrowscapBundle\\": ""
-        }
+        "psr-0": { "Browscap\\BrowscapBundle\\": "" }
     }
 }
