@@ -30,7 +30,6 @@
         }
     },
     "autoload": {
-        "psr-0": { "Browscap\\BrowscapBundle": "" }
-    },
-    "target-dir": "Browscap/BrowscapBundle"
+        "psr-4": { "Browscap\\BrowscapBundle\\": "" }
+    }
 }
